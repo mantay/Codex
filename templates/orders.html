@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Yandex Market Orders</title>
+</head>
+<body>
+  <h1>Orders</h1>
+  {% if orders %}
+    <ul>
+    {% for order in orders %}
+      <li>
+        <strong>ID:</strong> {{ order.id }} – <em>{{ order.status }}</em>
+        <form action="/deliver/{{ order.id }}" method="post" style="margin-top:5px;">
+          <label>Item ID <input name="item_id" required></label>
+          <label>Codes (comma separated) <input name="codes" required></label>
+          <button type="submit">Deliver codes</button>
+        </form>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No orders.</p>
+  {% endif %}
+</body>
+</html>
